@@ -1,0 +1,31 @@
+<form class="d-flex gap-2 mb-4" (ngSubmit)="search()">
+  <input
+    name="query"
+    class="form-control"
+    placeholder="Search GitHub repositories..."
+    [(ngModel)]="query"
+  />
+  <button type="submit" class="btn btn-primary" [disabled]="repos.loading()">Search</button>
+</form>
+
+@if (repos.error(); as error) {
+  <div class="alert alert-danger">{{ error }}</div>
+}
+
+@if (repos.loading()) {
+  <div class="text-center py-5"><div class="spinner-border" role="status"></div></div>
+} @else {
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+    @for (repo of repos.results(); track repo.id) {
+      <div class="col">
+        <app-repo-card
+          [repo]="repo"
+          [bookmarked]="repos.bookmarkedIds().has(repo.id)"
+          (toggle)="repos.toggleBookmark($event)"
+        />
+      </div>
+    } @empty {
+      <p class="text-muted">No repositories to show. Try a search.</p>
+    }
+  </div>
+}

@@ -1,0 +1,12 @@
+# .NET build output
+bin/
+obj/
+*.user
+.vs/
+
+# Node / Angular (frontend/.gitignore covers the rest)
+node_modules/
+
+# OS / editor
+.DS_Store
+.idea/

@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-sm-8 col-md-5">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h1 class="h4 mb-4">Sign in</h1>
+
+        <form (ngSubmit)="submit()">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              id="username"
+              name="username"
+              class="form-control"
+              required
+              [(ngModel)]="username"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              class="form-control"
+              required
+              [(ngModel)]="password"
+            />
+          </div>
+
+          @if (error(); as message) {
+            <div class="alert alert-danger py-2">{{ message }}</div>
+          }
+
+          <button type="submit" class="btn btn-primary w-100" [disabled]="submitting()">
+            Sign in
+          </button>
+        </form>
+
+        <p class="text-muted small mt-3 mb-0">Demo account: demo / demo123</p>
+      </div>
+    </div>
+  </div>
+</div>
